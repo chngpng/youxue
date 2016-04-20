@@ -1,0 +1,87 @@
+<template name="navbar">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">YouXue</a>
+
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#" class="js-add-offer">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> new offer
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav navbar-right">
+        <div class="navbar-text">
+          {{> loginButtons align="right"}}
+
+        </div>
+      </div>
+    </div>
+    <!-- / nav container -->
+  </nav>
+
+  <div id="newOfferModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">Please fill out the form to post offer</h4>
+        </div>
+
+        <div class="modal-body">
+          <form role="form">
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="airport-select">Airport:</label>
+                </div>
+                <div class="col-md-3">
+                  <select class="form-control" id="offer-airport-select">
+                    <option>JFK</option>
+                    <option>LGA</option>
+                    <option>EWR</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="date">Start date:</label>
+                </div>
+                <div class="col-md-9">
+                  <input type="date" id="offer-start-date">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="date">End date:</label>
+                </div>
+                <div class="col-md-9">
+                  <input type="date" id="offer-end-date">
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="saveNewOfferButton">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>

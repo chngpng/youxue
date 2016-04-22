@@ -23,42 +23,6 @@ Router.route('/', function () {
   this.render("offerList", {
     to: "main"
   });
-  //this.render("docList", {to:"main"});  
-});
-
-Template.navbar.events({
-  // Save button saves the current board into tsumego.
-  'click .js-add-offer': function () {
-    console.log('add offer is clicked');
-    $('#newOfferModal').modal('show');
-  },
-
-  'click #saveNewOfferButton': function () {
-    console.log('saveNewOfferButton button is clicked');
-    var airport = $('#offer-airport-select').val();
-    var start_date = new Date($('#offer-start-date').val() + "T00:00:00");
-    var end_date = new Date($('#offer-end-date').val() + "T00:00:00");
-
-    var offer = {
-      airport: airport,
-      start_date: start_date,
-      end_date: end_date
-    };
-
-    console.log("construction complete");
-    $('#newOfferModal').modal('hide');
-    Offers.insert(offer);
-  },
-})
-
-Template.offerList.helpers({
-  offers() {
-      return Offers.find()
-    },
-
-    dateFormat(date) {
-      return new Date(date).toDateString()
-    }
 });
 
 Template.hello.onCreated(function helloOnCreated() {

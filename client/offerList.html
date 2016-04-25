@@ -17,9 +17,9 @@
 
           <div class="panel-body">
             <!--div class="panel-body" style="cursor: pointer;"-->
-            <span>Start Date: {{dateFormat(start_date)}} </span>
+            <span>Start Date: {{dateFormat(startDate)}} </span>
             <br>
-            <span>End Date: {{dateFormat(end_date)}} </span>
+            <span>End Date: {{dateFormat(endDate)}} </span>
           </div>
         </div>
       </div>
@@ -39,14 +39,13 @@
               <span class="glyphicon glyphicon-trash"></span>
               <span class="sr-only">Delete offer</span>
             </button-->
-            <span> {{city}} {{state}} </span>
+            <span> {{address.city}} {{address.postalCode}} </span>
           </div>
 
           <div class="panel-body">
-            <!--div class="panel-body" style="cursor: pointer;"-->
-            <span>Start Date: {{dateFormat(start_date)}} </span>
+            <span>Start Date: {{dateFormat(startDate)}} </span>
             <br>
-            <span>End Date: {{dateFormat(end_date)}} </span>
+            <span>End Date: {{dateFormat(endDate)}} </span>
           </div>
         </div>
       </div>

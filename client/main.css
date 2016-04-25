@@ -3,3 +3,10 @@
 .top-margin {
   margin-top: 70px;
 }
+
+
+/* This is to fix the google place auto-complete in bootstrap modal. */
+
+.pac-container {
+  z-index: 100000;
+}

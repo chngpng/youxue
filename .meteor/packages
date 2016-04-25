@@ -23,3 +23,8 @@ twbs:bootstrap
 iron:router
 accounts-password
 ian:accounts-ui-bootstrap-3
+abdj:autoform-google-places-input
+aldeed:simple-schema
+aldeed:collection2
+aldeed:autoform
+session

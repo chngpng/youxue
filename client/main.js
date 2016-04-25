@@ -1,13 +1,15 @@
-import {
-  Template
-}
-from 'meteor/templating';
-import {
-  ReactiveVar
-}
-from 'meteor/reactive-var';
-
-import './main.html';
+Meteor.startup(function () {
+  Meteor.call('getGoogleMapsApiKey', function (error, result) {
+    if (error) {
+      console.log(error);
+    } else {
+      GoogleMaps.load({
+        key: result,
+        libraries: 'places'
+      });
+    }
+  });
+});
 
 // set up the iron router
 Router.configure({
@@ -25,20 +27,19 @@ Router.route('/', function () {
   });
 });
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
-
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
-
-Template.hello.events({
-  'click button' (event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
+var pickupFormHook = {
+  onSuccess: function (update, result) {
+    if (result) {
+      $('#pickupModal').modal('hide');
+    }
+  }
+}
+AutoForm.addHooks('pickupForm', pickupFormHook);
+var stayFormHook = {
+  onSuccess: function (update, result) {
+    if (result) {
+      $('#stayModal').modal('hide');
+    }
+  }
+}
+AutoForm.addHooks('stayForm', stayFormHook);

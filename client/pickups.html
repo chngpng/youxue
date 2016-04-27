@@ -1,0 +1,30 @@
+<template name="pickups">
+  <div class="container top-margin">
+    <div class="row">
+      {{#each pickups}}
+
+      <div class="col-md-3">
+        <div class="panel panel-default" data-doc-id="{{_id}}">
+
+          <div class="panel-heading">
+            <!--div class="panel-heading" style="cursor: pointer;"-->
+            <!--button type="button" class="pull-right close offer-remove">
+              <span class="glyphicon glyphicon-trash"></span>
+              <span class="sr-only">Delete offer</span>
+            </button-->
+            <span> {{airport}} </span>
+          </div>
+
+          <div class="panel-body">
+            <!--div class="panel-body" style="cursor: pointer;"-->
+            <span>Start Date: {{dateFormat(startDate)}} </span>
+            <br>
+            <span>End Date: {{dateFormat(endDate)}} </span>
+          </div>
+        </div>
+      </div>
+
+      {{/each}}
+    </div>
+  </div>
+</template>

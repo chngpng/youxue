@@ -18,11 +18,37 @@ Router.configure({
 
 // 'home' page
 Router.route('/', function () {
-  console.log("you hit / ");
   this.render("navbar", {
     to: "header"
   });
-  this.render("offerList", {
+  this.render("home", {
+    to: "main"
+  });
+});
+
+Router.route('/pickups', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  this.render("pickups", {
+    to: "main"
+  });
+});
+
+Router.route('/stays', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  this.render("stays", {
+    to: "main"
+  });
+});
+
+Router.route('/about', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  this.render("about", {
     to: "main"
   });
 });

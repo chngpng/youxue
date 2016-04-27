@@ -1,0 +1,29 @@
+<template name="stays">
+  <div class="container top-margin">
+    <div class="row">
+      {{#each stays}}
+
+      <div class="col-md-3">
+        <div class="panel panel-default" data-doc-id="{{_id}}">
+
+          <div class="panel-heading">
+            <!--div class="panel-heading" style="cursor: pointer;"-->
+            <!--button type="button" class="pull-right close offer-remove">
+              <span class="glyphicon glyphicon-trash"></span>
+              <span class="sr-only">Delete offer</span>
+            </button-->
+            <span> {{address.city}} {{address.postalCode}} </span>
+          </div>
+
+          <div class="panel-body">
+            <span>Start Date: {{dateFormat(startDate)}} </span>
+            <br>
+            <span>End Date: {{dateFormat(endDate)}} </span>
+          </div>
+        </div>
+      </div>
+
+      {{/each}}
+    </div>
+  </div>
+</template>

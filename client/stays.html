@@ -1,6 +1,20 @@
 <template name="stays">
   <div class="container top-margin">
     <div class="row">
+
+      <!-- New stay offer -->
+      <div class="col-md-3">
+        <div class="panel panel-default js-add-stay" style="cursor: pointer;">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span> New stay offer</span>
+          </div>
+          <div class="panel-body">
+            <span> Post your stay offer here so that others can see </span>
+          </div>
+        </div>
+      </div>
+
       {{#each stays}}
 
       <div class="col-md-3">
@@ -26,4 +40,26 @@
       {{/each}}
     </div>
   </div>
+
+  <!-- Modal to display form to post new stay -->
+  <div id="stayModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">Please fill out the form to post offer for stay</h4>
+        </div>
+
+        <div class="modal-body">
+          {{> quickForm id="stayForm" schema="Schema.Stay" collection="Stays" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </template>

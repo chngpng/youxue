@@ -52,20 +52,3 @@ Router.route('/about', function () {
     to: "main"
   });
 });
-
-var pickupFormHook = {
-  onSuccess: function (update, result) {
-    if (result) {
-      $('#pickupModal').modal('hide');
-    }
-  }
-}
-AutoForm.addHooks('pickupForm', pickupFormHook);
-var stayFormHook = {
-  onSuccess: function (update, result) {
-    if (result) {
-      $('#stayModal').modal('hide');
-    }
-  }
-}
-AutoForm.addHooks('stayForm', stayFormHook);

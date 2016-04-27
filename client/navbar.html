@@ -5,16 +5,6 @@
 
       <ul class="nav navbar-nav">
         <li>
-          <a href="#" class="js-add-pickup">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> flight pickup
-          </a>
-        </li>
-        <li>
-          <a href="#" class="js-add-stay">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> stay
-          </a>
-        </li>
-        <li>
           <a href="pickups">Pick Up</a>
         </li>
         <li>
@@ -34,46 +24,5 @@
     </div>
     <!-- / nav container -->
   </nav>
-
-  <!-- Modal to display form to post new pickup -->
-  <div id="pickupModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span class="glyphicon glyphicon-remove"></span>
-            <span class="sr-only">Close</span>
-          </button>
-          <h4 class="modal-title">Please fill out the form to post offer for pickup</h4>
-        </div>
-
-        <div class="modal-body">
-          {{> quickForm id="pickupForm" schema="Schema.Pickup" collection="Pickups" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" }}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal to display form to post new stay -->
-  <div id="stayModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span class="glyphicon glyphicon-remove"></span>
-            <span class="sr-only">Close</span>
-          </button>
-          <h4 class="modal-title">Please fill out the form to post offer for stay</h4>
-        </div>
-
-        <div class="modal-body">
-          {{> quickForm id="stayForm" schema="Schema.Stay" collection="Stays" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" }}
-        </div>
-      </div>
-    </div>
-  </div>
-
 
 </template>

@@ -1,6 +1,20 @@
 <template name="pickups">
   <div class="container top-margin">
     <div class="row">
+
+      <!-- New pickup offer -->
+      <div class="col-md-3">
+        <div class="panel panel-default js-add-pickup" style="cursor: pointer;">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span> New pick up offer</span>
+          </div>
+          <div class="panel-body">
+            <span> Post your pick up offer here so that others can see </span>
+          </div>
+        </div>
+      </div>
+
       {{#each pickups}}
 
       <div class="col-md-3">
@@ -25,6 +39,26 @@
       </div>
 
       {{/each}}
+    </div>
+  </div>
+
+  <!-- Modal to display form to post new pickup -->
+  <div id="pickupModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">Please fill out the form to post offer for pickup</h4>
+        </div>
+
+        <div class="modal-body">
+          {{> quickForm id="pickupForm" schema="Schema.Pickup" collection="Pickups" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" }}
+        </div>
+      </div>
     </div>
   </div>
 </template>

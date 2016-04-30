@@ -33,6 +33,7 @@ Template.stays.onCreated(function () {
     //  map: map.instance
     //});
 
+    console.log(map.instance);
     Stays.find().forEach(function (e) {
       var geopoint = e.address.geopoint;
       var marker = new google.maps.Marker({
@@ -60,12 +61,18 @@ Template.stays.events({
     var stay = Stays.findOne({
       _id: docId
     });
-    console.log(stay);
-    //if (!Meteor.user()) {
-    //  alert("Log in to post offers.");
-    //  return
-    //}
-    //$('#stayModal').modal('show');
+    var latLng = {
+      lat: stay.address.geopoint[1],
+      lng: stay.address.geopoint[0]
+    };
+    console.log(latLng);
+
+    var map = GoogleMaps.maps.map.instance;
+    var marker = new google.maps.Marker({
+      position: latLng,
+    });
+    map.setCenter(marker.getPosition());
+    map.setZoom(15);
   },
 })
 

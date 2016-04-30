@@ -18,7 +18,7 @@
       {{#each stays}}
 
       <div class="col-md-3">
-        <div class="panel panel-default" data-doc-id="{{_id}}">
+        <div class="panel panel-default stay-card" doc_id="{{_id}}" style="cursor: pointer;">
 
           <div class="panel-heading">
             <!--div class="panel-heading" style="cursor: pointer;"-->
@@ -39,6 +39,10 @@
 
       {{/each}}
     </div>
+  </div>
+
+  <div class="map-container">
+    {{> googleMap name="map" options=mapOptions}}
   </div>
 
   <!-- Modal to display form to post new stay -->

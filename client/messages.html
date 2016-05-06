@@ -1,0 +1,14 @@
+<template name="messages">
+  <div class="container top-margin">
+
+    <div class="list-group conversation-list">
+      {{#each conv in conversations}}
+      <a href="/messages/{{conv._id}}" class="list-group-item">
+        <h4 class="list-group-item-heading">Conversation with {{getParticipantUserName(conv)}}</h4>
+        <p class="list-group-item-text">last message at {{lastMessageDateTime(conv)}}</p>
+      </a>
+      {{/each}}
+    </div>
+
+  </div>
+</template>

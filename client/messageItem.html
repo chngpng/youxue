@@ -1,0 +1,33 @@
+<template name="messageItem">
+  <div class="container top-margin">
+    <div class="row">
+      {{#each messages}}
+
+      <div class="col-md-3">
+        <div class="panel panel-default stay-card" doc_id="{{_id}}" style="cursor: pointer;">
+
+          <div class="panel-heading">
+            <span> {{body}} </span>
+          </div>
+
+          <!--div class="panel-body">
+            <span>Start Date: {{dateFormat(startDate)}} </span>
+            <br>
+            <span>End Date: {{dateFormat(endDate)}} </span>
+          </div-->
+        </div>
+      </div>
+
+
+
+      {{/each}}
+    </div>
+
+    <div class="list-group">
+      <a href="#" class="list-group-item">
+        <h4 class="list-group-item-heading">List group item heading</h4>
+        <p class="list-group-item-text">...</p>
+      </a>
+    </div>
+  </div>
+</template>

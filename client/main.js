@@ -52,3 +52,27 @@ Router.route('/about', function () {
     to: "main"
   });
 });
+
+Router.route('/messages', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  this.render("messages", {
+    to: "main"
+  });
+});
+
+Router.route('/messages/:_id', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  var conv = Meteor.conversations.findOne({
+    _id: this.params._id
+  });
+  console.log("_id = " + this.params._id);
+  console.log("conv = " + conv);
+  this.render("messageItem", {
+    to: "main",
+    data: conv
+  });
+});

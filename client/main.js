@@ -73,6 +73,8 @@ Router.route('/messages/:_id', function () {
   console.log("conv = " + conv);
   this.render("messageItem", {
     to: "main",
-    data: conv
+    data: {
+      conversation: conv
+    }
   });
 });

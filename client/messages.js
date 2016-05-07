@@ -3,11 +3,12 @@ Template.messages.helpers({
       return Meteor.conversations.find();
     },
 
-    getParticipantUserName(conversation) {
-      var pid = conversation.participants().fetch()[0].userId;
-      return Meteor.users.findOne({
-        _id: pid
-      }).profile.userName;
+    getOpponentName(conversation) {
+      return getOpponent(conversation).profile.userName;
+    },
+
+    sendMessage(conversation, msg) {
+      conversation.sendMessage(msg);
     },
 
     lastMessageDateTime(conversation) {
@@ -15,3 +16,10 @@ Template.messages.helpers({
       return date.toDateString() + " " + date.toTimeString();
     }
 })
+
+function getOpponent(conversation) {
+  var pid = conversation.participants().fetch()[0].userId;
+  return Meteor.users.findOne({
+    _id: pid
+  });
+}

@@ -1,13 +1,14 @@
 <template name="messageItem">
   <div class="container top-margin">
+    {{#each msg in conversation.messages}}
     <div class="row">
-      {{#each messages}}
 
-      <div class="col-md-3">
+      <!--div class="col-md-3 pull-right"-->
+      <div class={{getMsgDivClass(msg)}}>
         <div class="panel panel-default stay-card" doc_id="{{_id}}" style="cursor: pointer;">
 
           <div class="panel-heading">
-            <span> {{body}} </span>
+            <span> {{msg.body}} </span>
           </div>
 
           <!--div class="panel-body">
@@ -18,16 +19,18 @@
         </div>
       </div>
 
+    </div>
+    {{/each}}
 
-
-      {{/each}}
+    <div class="col-md-3 input-group pull-right">
+      <input type="text" class="form-control message-input" placeholder="Input text">
     </div>
 
-    <div class="list-group">
+    <!--div class="list-group">
       <a href="#" class="list-group-item">
         <h4 class="list-group-item-heading">List group item heading</h4>
         <p class="list-group-item-text">...</p>
       </a>
-    </div>
+    </div-->
   </div>
 </template>

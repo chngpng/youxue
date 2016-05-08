@@ -74,6 +74,29 @@ Template.stays.events({
     map.setCenter(marker.getPosition());
     map.setZoom(15);
   },
+
+  'click .contact-author': function (e, template) {
+    console.log('contact author is clicked');
+    console.log('author id is ' + this.authorId);
+    Session.set("stayAuthor", this.authorId);
+    e.stopPropagation();
+
+    $('#messageModal').modal('show');
+  },
+
+  'click #messageInputSend': function (e, template) {
+    console.log('Send is clicked');
+    var msg = document.getElementById("messageInputBox").value;
+    console.log('msg = ' + msg);
+    var author = Meteor.users.findOne({
+      _id: Session.get("stayAuthor")
+    });
+    if (msg && author) {
+      var conv = new Conversation().save();
+      conv.addParticipant(author);
+      conv.sendMessage(msg);
+    }
+  },
 })
 
 var stayFormHook = {

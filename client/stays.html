@@ -1,6 +1,21 @@
 <template name="stays">
   <div class="container top-margin">
     <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+          <input type="text" class="form-control" placeholder="Search for...">
+        </div>
+        <!-- /input-group -->
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="col-xs-12" style="height:30px;"></div>
+
+    <div class="row">
 
       <!-- New stay offer -->
       <div class="col-md-3">
@@ -42,7 +57,7 @@
     </div>
   </div>
 
-  <div class="map-container">
+  <div class="container map-container">
     {{> googleMap name="map" options=mapOptions}}
   </div>
 

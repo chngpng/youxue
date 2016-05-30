@@ -4,7 +4,7 @@ Meteor.startup(function () {
       console.log(error);
     } else {
       GoogleMaps.load({
-        key: result,
+        //key: result,
         libraries: 'places'
       });
     }

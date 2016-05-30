@@ -24,6 +24,9 @@ Router.route('/', function () {
   this.render("home", {
     to: "main"
   });
+  this.render("footer", {
+    to: "footer"
+  });
 });
 
 Router.route('/pickups', function () {
@@ -32,6 +35,9 @@ Router.route('/pickups', function () {
   });
   this.render("pickups", {
     to: "main"
+  });
+  this.render("footer", {
+    to: "footer"
   });
 });
 
@@ -42,6 +48,9 @@ Router.route('/stays', function () {
   this.render("stays", {
     to: "main"
   });
+  this.render("footer", {
+    to: "footer"
+  });
 });
 
 Router.route('/about', function () {
@@ -51,6 +60,9 @@ Router.route('/about', function () {
   this.render("about", {
     to: "main"
   });
+  this.render("footer", {
+    to: "footer"
+  });
 });
 
 Router.route('/messages', function () {
@@ -59,6 +71,9 @@ Router.route('/messages', function () {
   });
   this.render("messages", {
     to: "main"
+  });
+  this.render("footer", {
+    to: "footer"
   });
 });
 
@@ -76,5 +91,8 @@ Router.route('/messages/:_id', function () {
     data: {
       conversation: conv
     }
+  });
+  this.render("footer", {
+    to: "footer"
   });
 });

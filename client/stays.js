@@ -33,7 +33,6 @@ Template.stays.onCreated(function () {
     //  map: map.instance
     //});
 
-    console.log(map.instance);
     Stays.find().forEach(function (e) {
       var geopoint = e.address.geopoint;
       var marker = new google.maps.Marker({
@@ -57,7 +56,6 @@ Template.stays.events({
   'click .stay-card': function (e) {
     console.log('stay card is clicked');
     var docId = e.currentTarget.getAttribute("doc_id");
-    console.log(docId);
     var stay = Stays.findOne({
       _id: docId
     });
@@ -76,8 +74,6 @@ Template.stays.events({
   },
 
   'click .contact-author': function (e, template) {
-    console.log('contact author is clicked');
-    console.log('author id is ' + this.authorId);
     Session.set("stayAuthor", this.authorId);
     e.stopPropagation();
 
@@ -85,16 +81,26 @@ Template.stays.events({
   },
 
   'click #messageInputSend': function (e, template) {
-    console.log('Send is clicked');
     var msg = document.getElementById("messageInputBox").value;
-    console.log('msg = ' + msg);
     var author = Meteor.users.findOne({
       _id: Session.get("stayAuthor")
     });
     if (msg && author) {
-      var conv = new Conversation().save();
-      conv.addParticipant(author);
+      var existingConv = getConversation(Meteor.user()._id, Session.get("stayAuthor"));
+      var conv;
+
+      // Try to find an existing conversation for the two participants. If none exists, 
+      // then create a new conversation.
+      if (existingConv) {
+        console.log("found existing conv");
+        conv = existingConv;
+      } else {
+        console.log("creating new conv");
+        conv = new Conversation().save();
+        conv.addParticipant(author);
+      }
       conv.sendMessage(msg);
+      Session.delete('stayAuthor');
     }
   },
 })
@@ -107,3 +113,14 @@ var stayFormHook = {
   }
 }
 AutoForm.addHooks('stayForm', stayFormHook);
+
+// Finds an existing conversation for the two participants.
+var getConversation = function (participant1, participant2) {
+  return Meteor.conversations.findOne({
+    $and: [{
+      '_participants': participant1
+    }, {
+      '_participants': participant2
+    }]
+  })
+}

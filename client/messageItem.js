@@ -12,7 +12,6 @@ Template.messageItem.events = {
   'keypress input.message-input': function (evt, template) {
     // Only handling enter events.
     if (evt.which === 13) {
-      console.log(evt.target.value);
       var msg = evt.target.value;
       if (msg) {
         template.data.conversation.sendMessage(msg);
@@ -24,7 +23,5 @@ Template.messageItem.events = {
 };
 
 function isSelfMessage(msg) {
-  console.log(msg.userId);
-  console.log(Meteor.user()._id);
   return msg.userId == Meteor.user()._id;
 }

@@ -1,14 +1,22 @@
 <template name="messages">
   <div class="container top-margin">
+    {{#if Meteor.user}} {{> showMessages}} {{else}} {{> logInPrompt}} {{/if}}
+  </div>
+</template>
 
-    <div class="list-group conversation-list">
-      {{#each conv in conversations}}
-      <a href="/messages/{{conv._id}}" class="list-group-item">
-        <h4 class="list-group-item-heading">Conversation with {{getOpponentName(conv)}}</h4>
-        <p class="list-group-item-text">last message at {{lastMessageDateTime(conv)}}</p>
-      </a>
-      {{/each}}
-    </div>
+<template name="showMessages">
+  <div class="list-group conversation-list">
+    {{#each conv in conversations}}
+    <a href="/messages/{{conv._id}}" class="list-group-item">
+      <h4 class="list-group-item-heading">Conversation with {{getOpponentName(conv)}}</h4>
+      <p class="list-group-item-text">last message at {{lastMessageDateTime(conv)}}</p>
+    </a>
+    {{/each}}
+  </div>
+</template>
 
+<template name="logInPrompt">
+  <div>
+    <h4>Please log in to view your messages.</h4>
   </div>
 </template>

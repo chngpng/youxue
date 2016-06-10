@@ -14,6 +14,10 @@ Template.messages.helpers({
     lastMessageDateTime(conversation) {
       var date = conversation.lastMessage().date;
       return date.toDateString() + " " + date.toTimeString();
+    },
+
+    isLoggedIn() {
+      return Meteor.user()
     }
 })
 

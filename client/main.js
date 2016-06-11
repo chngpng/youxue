@@ -53,6 +53,18 @@ Router.route('/stays', function () {
   });
 });
 
+Router.route('/eats', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  this.render("eats", {
+    to: "main"
+  });
+  this.render("footer", {
+    to: "footer"
+  });
+});
+
 Router.route('/about', function () {
   this.render("navbar", {
     to: "header"

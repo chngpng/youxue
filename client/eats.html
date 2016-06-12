@@ -71,7 +71,7 @@
         </div>
 
         <div class="modal-body">
-          {{> quickForm id="eatForm" schema="Schema.Eat" collection="Eats" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" }}
+          {{> quickForm id="eatForm" schema="Schema.Eat" collection="Eats" type="insert" omitFields="createdAt, authorId, subscribers" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" }}
         </div>
       </div>
     </div>

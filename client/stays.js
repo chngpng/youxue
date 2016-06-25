@@ -21,6 +21,13 @@ Template.stays.helpers({
           zoom: 10
         };
       }
+      else 
+      {
+        return {
+          center: new google.maps.LatLng(40.7128, -74.0059),
+          zoom: 10
+        }
+      }
     }
 })
 

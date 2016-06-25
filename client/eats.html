@@ -31,9 +31,8 @@
       </div>
 
       {{#each eat in eats}}
-
       <div class="col-md-3">
-        <div class="panel panel-default" data-doc-id="{{_id}}">
+        <div class="panel panel-default" data-doc-id="{{eat._id}}">
 
           <div class="panel-heading">
             <!--div class="panel-heading" style="cursor: pointer;"-->
@@ -41,7 +40,8 @@
               <span class="glyphicon glyphicon-trash"></span>
               <span class="sr-only">Delete offer</span>
             </button-->
-            <span> {{getTitle(eat)}} </span>
+            <span> {{getTitle(eat)}} </span> {{#with eat}}
+            <span style="cursor: pointer;" class="glyphicon glyphicon-hand-up pull-right subscribe" aria-hidden="true"></span> {{/with}}
           </div>
 
           <div class="panel-body">
@@ -71,7 +71,55 @@
         </div>
 
         <div class="modal-body">
-          {{> quickForm id="eatForm" schema="Schema.Eat" collection="Eats" type="insert" omitFields="createdAt, authorId, subscribers" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" }}
+          {{> quickForm id="eatForm" schema="Schema.Eat" collection="Eats" type="insert" omitFields="createdAt, authorId, subscriptions" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal to subscribe to an eat post -->
+  <div id="subscribeModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">Please fill out the form to subscribe</h4>
+        </div>
+
+        <div class="modal-body">
+          <div class='row'>
+            <div class='col-sm-3'>
+              <b>title</b>
+            </div>
+            <div class='col-sm-3'>
+              <b>price</b>
+            </div>
+            <div class='col-sm-3'>
+              <b>quantity</b>
+            </div>
+          </div>
+          {{#each eatToSubscribe.content}}
+          <div class='row'>
+            <div class='col-sm-3'>
+              <p>{{title}}</p>
+            </div>
+            <div class='col-sm-3'>
+              <p>{{price}}</p>
+            </div>
+            <div class='col-sm-3'>
+              <input type="number" id='{{getContentItemId(@index)}}'>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+
+        <div class="modal-footer">
+          <!--button id="submitSubscribe" type="button" class="btn btn-primary" data-dismiss="modal">Submit</button-->
+          <button id="submitSubscribe" type="button" class="btn btn-primary">Submit</button>
         </div>
       </div>
     </div>

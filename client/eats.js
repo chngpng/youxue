@@ -16,6 +16,14 @@ Template.eats.helpers({
         }
       )
       return title;
+    },
+
+    eatToSubscribe() {
+      return Session.get('eatToSubscribe');
+    },
+
+    getContentItemId(index) {
+      return 'item' + index;
     }
 })
 
@@ -28,6 +36,34 @@ Template.eats.events({
     }
     $('#eatModal').modal('show');
   },
+  'click .subscribe': function (e, template) {
+    //Session.set("stayAuthor", this.authorId);
+    //e.stopPropagation();
+
+    //subscribe(this, Meteor.userId());
+    Session.set('eatToSubscribe', this);
+    $('#subscribeModal').modal('show');
+  },
+  'click #submitSubscribe': function (e, template) {
+    console.log('submit subscribe is clicked');
+    var eat = Session.get('eatToSubscribe');
+    var quantities = [];
+    for (i = 0; i < eat.content.length; i++) {
+      var itemId = 'item' + i;
+      console.log($('#' + itemId)[0].value);
+      quantities.push({
+        title: eat.content[i].title,
+        quantity: $('#' + itemId)[0].value
+      });
+    }
+    var subscribeRecord = {
+      "eatId": eat._id,
+      "subscriberId": Meteor.userId(),
+      "quantities": quantities
+    };
+    EatSubscriptions.insert(subscribeRecord);
+    $('#subscribeModal').modal('hide');
+  },
 })
 
 var eatFormHook = {
@@ -38,3 +74,35 @@ var eatFormHook = {
   }
 }
 AutoForm.addHooks('eatForm', eatFormHook);
+
+var subscribe = function (eat, userId) {
+  if (eat.authorId == userId) {
+    alert("Cannot subscribe to your own post.");
+    return;
+  }
+  console.log("about to subscribe");
+
+  var quantities = [];
+  eat.content.forEach(function (item) {
+    quantities.push({
+      title: item.title,
+      quantity: 2
+    });
+  });
+
+  var subscriptionId = EatSubscriptions.insert({
+    eatId: eat._id,
+    subscriberId: userId,
+    quantities: quantities
+  });
+
+  subscriptions = eat.subscriptions || [];
+  subscriptions.push(subscriptionId);
+  Eats.update({
+    _id: eat._id
+  }, {
+    $set: {
+      subscriptions: subscriptions
+    }
+  });
+}

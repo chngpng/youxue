@@ -1,6 +1,9 @@
 Template.messages.helpers({
   conversations() {
-      return Meteor.conversations.find();
+      console.log("hit messages");
+      var res = Meteor.conversations.find();
+      return res;
+      //return Meteor.conversations.find();
     },
 
     getOpponentName(conversation) {

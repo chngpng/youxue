@@ -1,12 +1,10 @@
  Meteor.methods({
  
-    'uploadFile': function(file) {
+    'uploadFile': function(file, options) {
      /* Remember the method name must match the method name from the client call. The parameters passed from the client can be referenced by file.paramname */
     var response;
-    
-    var randomNum=Math.random().toString(36).substr(2, 9);
-    var newFileName=randomNum+"_"+file.name;
-
+     
+    var newFileName= options.newFileName;
 
     if (file === void 0) {
       throw new Meteor.Error(500, "Missing File", "", "");

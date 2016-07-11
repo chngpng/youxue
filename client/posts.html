@@ -1,0 +1,45 @@
+<template name="posts">
+  <div class="container top-margin">
+    {{#if currentUser}}
+    <div class="col-xs-12" style="height:30px;"></div>
+
+    {{#each eat in eats}}
+    <div class="col-md-6">
+      <div class="media">
+        <div class="media-left">
+          {{#if eat.image}}
+          <img class="media-object" src="{{eat.image}}" height=100 width=100> {{else}}
+          <form class="form-group" style="height:100px;width:100px;border:1px solid black">
+            <label class="btn btn-default">
+              <input type="file" style="display: none;" class="uploadFile" id="uploadFile" parent-id="{{eat._id}}"> Browse
+            </label>
+          </form>
+          {{/if}}
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{getTitle(eat)}}</h4> {{eat.description}}
+          <ul class="media-list">
+            {{#each item in eat.content}}
+            <li class="media">
+              <div class="media-left">
+                {{#if item.image}}
+                <img class="media-object" src="{{item.image}}" height=100 width=100> {{else}}
+                <form class="form-group" style="height:100px;width:100px;border:1px solid black">
+                  <label class="btn btn-default">
+                    <input type="file" style="display: none;" class="uploadFile" id="uploadFile" parent-id="{{eat._id}}" item-index="{{@index}}"> Browse
+                  </label>
+                </form>
+                {{/if}}
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{item.title}}</h4> {{item.description}}
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {{/each}} {{else}} {{> logInPrompt}} {{/if}}
+  </div>
+</template>

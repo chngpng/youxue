@@ -77,6 +77,64 @@
     </div>
   </div>
 
+  <!-- Modal to display form to add image to eat post -->
+  <div id="imageModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">Attach images for your post</h4>
+        </div>
+
+        <div class="modal-body">
+          {{#with eatToAddImage}}
+          <div class="media">
+            <div class="media-left">
+              {{#if image}}
+              <img class="media-object" src="{{this.image}}" height=100 width=100> {{else}}
+              <form class="form-group" style="height:100px;width:100px;border:1px solid black">
+                <label class="btn btn-default">
+                  <input type="file" style="display: none;" class="uploadFile" id="uploadFile" parent-id="{{this._id}}"> Browse
+                </label>
+              </form>
+              {{/if}}
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{getTitle(this)}}</h4> {{description}}
+              <ul class="media-list">
+                {{#each item in this.content}}
+                <li class="media">
+                  <div class="media-left">
+                    {{#if item.image}}
+                    <img class="media-object" src="{{item.image}}" height=100 width=100> {{else}}
+                    <form class="form-group" style="height:100px;width:100px;border:1px solid black">
+                      <label class="btn btn-default">
+                        <input type="file" style="display: none;" class="uploadFile" id="uploadFile" parent-id="{{this._id}}" item-index="{{@index}}"> Browse
+                      </label>
+                    </form>
+                    {{/if}}
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">{{item.title}}</h4> {{item.description}}
+                  </div>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+          {{/with}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary image-add-done"> Done </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal to subscribe to an eat post -->
   <div id="subscribeModal" class="modal fade" role="dialog">
     <div class="modal-dialog">

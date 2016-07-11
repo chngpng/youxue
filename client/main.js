@@ -77,6 +77,30 @@ Router.route('/about', function () {
   });
 });
 
+Router.route('/upload', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  this.render("uploadImage", {
+    to: "main"
+  });
+  this.render("footer", {
+    to: "footer"
+  });
+});
+
+Router.route('/posts', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  this.render("posts", {
+    to: "main"
+  });
+  this.render("footer", {
+    to: "footer"
+  });
+});
+
 Router.route('/messages', function () {
   this.render("navbar", {
     to: "header"

@@ -4,7 +4,7 @@ Meteor.startup(function () {
       console.log(error);
     } else {
       GoogleMaps.load({
-        //key: result,
+        key: result,
         libraries: 'places'
       });
     }
@@ -58,6 +58,18 @@ Router.route('/eats', function () {
     to: "header"
   });
   this.render("eats", {
+    to: "main"
+  });
+  this.render("footer", {
+    to: "footer"
+  });
+});
+
+Router.route('/eatForm', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  this.render("eatForm", {
     to: "main"
   });
   this.render("footer", {

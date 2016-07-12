@@ -183,3 +183,9 @@
     </div>
   </div>
 </template>
+
+<template name="eatForm">
+  <div class="container">
+    {{> quickForm id="eatForm" schema="Schema.Eat" collection="Eats" type="insert" omitFields="createdAt, authorId, subscriptions" template="bootstrap3" label-class="col-sm-3" input-col-class="col-sm-9" }}
+  </div>
+</template>

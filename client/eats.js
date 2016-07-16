@@ -130,6 +130,11 @@ var eatFormHook = {
       });
       Session.set("eatToAddImage", eatToAddImage);
       $('#imageModal').modal('show');
+      console.log("eatForm hook invoked");
+      Router.go('eat.edit', {
+        _id: result
+      });
+      //Router.go('about');
     }
   }
 }

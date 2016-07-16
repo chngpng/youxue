@@ -77,6 +77,35 @@ Router.route('/eatForm', function () {
   });
 });
 
+Router.route('/eatEdit/:_id', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  var eat = Eats.findOne({
+    _id: this.params._id
+  });
+  Session.set("eatEditId", this.params._id);
+  console.log("_id = " + this.params._id);
+  console.log("eat = " + eat);
+  //this.render("messageItem", {
+  //  to: "main",
+  //  data: {
+  //    conversation: conv
+  //  }
+  //});
+  this.render("eatEdit", {
+    to: "main",
+    data: {
+      eat: eat
+    }
+  });
+  this.render("footer", {
+    to: "footer"
+  });
+}, {
+  name: 'eat.edit'
+});
+
 Router.route('/about', function () {
   this.render("navbar", {
     to: "header"

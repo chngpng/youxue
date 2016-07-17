@@ -42,27 +42,17 @@ Template.eatEditItem.events({
     this.item.description = itemDescription;
     this.item.price = itemPrice;
 
-    if (this.eat) {
-      this.eat.content[this.itemId] = this.item;
-      Eats.update({
-        _id: this.eat._id
-      }, {
-        $set: {
-          content: this.eat.content
-        }
-      });
-      Router.go('eat.edit', {
-        _id: this.eat._id
-      });
-    } else {
-      var newEat = Session.get('newEat');
-      if (!newEat.content) {
-        newEat.content = [];
+    this.eat.content[this.itemId] = this.item;
+    Eats.update({
+      _id: this.eat._id
+    }, {
+      $set: {
+        content: this.eat.content
       }
-      newEat.content.push(this.item);
-      Session.set('newEat', newEat);
-      Router.go('newEat');
-    }
+    });
+    Router.go('eat.edit', {
+      _id: this.eat._id
+    });
   },
   'click #itemCancel': function (event, template) {
     event.preventDefault();

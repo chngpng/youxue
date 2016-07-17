@@ -38,7 +38,13 @@ Template.eats.events({
       alert("Log in to post offers.");
       return
     }
-    $('#eatModal').modal('show');
+    //$('#eatModal').modal('show');
+    var newId = Eats.insert({
+      content: []
+    });
+    Router.go('eat.edit', {
+      _id: newId
+    });
   },
   'click .image-add-done': function () {
     $('#imageModal').modal('hide');

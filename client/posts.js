@@ -28,6 +28,13 @@ Template.posts.helpers({
 })
 
 Template.posts.events({
+  'click #editEat': function (event, template) {
+    console.log("edit eat clicked");
+    var eatId = event.target.parentElement.getAttribute('doc-id');
+    Router.go('eat.edit', {
+      _id: eatId
+    });
+  },
   'change .uploadFile': function (event, template) {
     var files = event.target.files;
     var file = files[0];

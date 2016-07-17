@@ -1,0 +1,51 @@
+<template name="eatEdit">
+  <div class="container top-margin">
+    <div class="form-group">
+      <label for="eatImage">Image</label>
+      <img class="media-object" id="eatImage" src="{{eat.image}}" height=200 width=200>
+    </div>
+    <div class="form-group">
+      <label class="btn btn-default">
+        <input type="file" style="display: none;" class="uploadFile" id="uploadFile" parent-id="{{eat._id}}">Upload
+      </label>
+      <label class="btn btn-default" id="deleteFile">Delete</label>
+    </div>
+    <div class="form-group">
+      <label for="eatTitle">Eat Post Title</label>
+      <input type="text" class="form-control" id="eatTitle" placeholder="Title" value="{{eat.title}}">
+    </div>
+    <div class="form-group">
+      <label for="eatDescription">Eat Post Description</label>
+      <input type="text" class="form-control" id="eatDescription" placeholder="Description" value="{{eat.description}}">
+    </div>
+    <div class="form-group">
+      <label for="eatContent">Content</label>
+      <div>
+        <button type="button" class="btn btn-default" id="addEatItem">
+          <span class="glyphicon glyphicon-plus"></span> Add item
+        </button>
+      </div>
+      <table class="table table-striped table-hover" id="eatContent">
+        <thead>
+          <th class="th-sortable">Title</th>
+          <th class="th-sortable">Description</th>
+          <th class="th-sortable">Price($)</th>
+        </thead>
+        <tbody>
+          {{#each item in eat.content}}
+          <tr class='clickable-row' style="cursor: pointer;" data-href='/eatEdit/{{eat._id}}/item/{{@index}}'>
+            <td>{{item.title}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.price}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{#each item in content}} {{#with item}} {{> eatEditItem}} {{/with}} {{/each}}
+    <div class="form-group">
+      <button class="btn btn-success" id="eatSave">Save</button>
+      <button class="btn btn-default" id="eatCancel">Cancel</button>
+    </div>
+  </div>
+</template>

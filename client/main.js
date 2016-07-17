@@ -106,6 +106,61 @@ Router.route('/eatEdit/:_id', function () {
   name: 'eat.edit'
 });
 
+Router.route('/newEat', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  var eat = Session.get('newEat') ? Session.get('newEat') : {};
+  this.render("eatEdit", {
+    to: "main",
+    data: {
+      eat: eat
+    }
+  });
+  this.render("footer", {
+    to: "footer"
+  });
+});
+
+Router.route('/newEat/item', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  this.render("eatEditItem", {
+    to: "main",
+    data: {
+      //eat: Session.get("newEat"),
+      item: {}
+    }
+  });
+  this.render("footer", {
+    to: "footer"
+  });
+}, {
+  name: 'eatItem.new'
+});
+
+Router.route('/eatEdit/:_id/item/:_itemId', function () {
+  this.render("navbar", {
+    to: "header"
+  });
+  var eat = Eats.findOne({
+    _id: this.params._id
+  });
+  Session.set("eatEditId", this.params._id);
+  this.render("eatEditItem", {
+    to: "main",
+    data: {
+      eat: eat,
+      item: eat.content[this.params._itemId],
+      itemId: parseInt(this.params._itemId)
+    }
+  });
+  this.render("footer", {
+    to: "footer"
+  });
+});
+
 Router.route('/about', function () {
   this.render("navbar", {
     to: "header"

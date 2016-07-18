@@ -92,6 +92,21 @@ Template.eatEdit.events({
   }
 })
 
+Template.eatEdit.rendered = function() {
+    $('.datepicker').pickadate();
+}
+
+Template.eatEdit.onRendered(function() {
+  this.autorun(function () {
+    if (GoogleMaps.loaded()) {
+      $("#eatAddress").geocomplete()
+      .bind("geocode:result", function(event, result){
+        console.log(result);
+      });;
+    }
+  });
+});
+
 function isPopulated(eat) {
   return (eat.content && eat.content.length > 0) || eat.title || eat.description;
 }
